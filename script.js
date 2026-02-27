@@ -27,7 +27,7 @@ function checkKey() {
     
     if (currentKeyIndex === 3) {
         // JAWABAN BENAR
-        notif.innerText = "Kunci sesuai, silakan masuk!";
+        notif.innerText = "Yey! Kunci sesuai, silakan masuk! (⁠≧⁠▽⁠≦⁠)";
         notif.classList.add('benar');
         document.getElementById('sfx-benar').play();
         
@@ -40,7 +40,7 @@ function checkKey() {
         
     } else {
         // JAWABAN SALAH
-        notif.innerText = "Tidak sesuai, coba lagi!";
+        notif.innerText = "Sayangnya bukan, coba lagi ya (⁠╥⁠﹏⁠╥⁠)";
         notif.classList.add('salah');
         document.getElementById('sfx-salah').play();
         
