@@ -6,6 +6,7 @@
 }
 
 body, html {
+    font-family: 'Quicksand', sans-serif;
     width: 100%;
     height: 100%;
     background-color: #1a1a1a; /* Warna gelap di luar area game */
@@ -175,4 +176,10 @@ button:active {
     /* ... properti lain tetap ... */
     color: white; /* default teks putih */
     text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Atau kalau mau khusus untuk tombol dan notifikasi saja agar lebih menonjol */
+button, .notif {
+    font-family: 'Quicksand', sans-serif;
+    letter-spacing: 0.5px; /* Biar lebih lega dan enak dibaca */
 }
