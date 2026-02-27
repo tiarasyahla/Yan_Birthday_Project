@@ -71,48 +71,48 @@ body, html {
 }
 
 /* --- PERBAIKAN TOMBOL MENJADI BERSEBELAHAN (LEFT-RIGHT) --- */
-.button-container {
+/*.button-container {
     position: absolute;
     bottom: 15%; /* Sedikit lebih turun agar tidak terlalu menutupi pintu */
-    width: 100%;
+    /*width: 100%;
     display: flex;
-    flex-direction: row; /* Ubah dari column menjadi row untuk sejajar */
-    justify-content: center; /* Tombol berada di tengah layar secara horizontal */
-    align-items: center;
-    gap: 10px; /* Jarak antar tombol diperkecil agar pas bersebelahan */
-    padding: 0 10px; /* Beri sedikit padding samping */
-    z-index: 20;
+    flex-direction: row;/*Ubah dari column menjadi row untuk sejajar*/
+    /*justify-content: center; /* Tombol berada di tengah layar secara horizontal */
+    /*align-items: center;
+    /*gap: 10px; /* Jarak antar tombol diperkecil agar pas bersebelahan */
+    /*padding: 0 10px; /* Beri sedikit padding samping */
+    /*z-index: 20;
 }
 
 button {
     /* Kita buat tombolnya berbagi tempat (misal masing-masing ~45%) */
-    flex: 0 1 45%; 
+    /*flex: 0 1 45%;
     max-width: none; /* Hilangkan max-width lama agar bisa lebar sejajar */
-    padding: 12px 10px; /* Sesuaikan padding agar teks tetap pas */
-    border-radius: 10px;
+    /*padding: 12px 10px; /* Sesuaikan padding agar teks tetap pas */
+    /*border-radius: 10px;
     border: none;
     background: white;
     font-size: 13px; /* Ukuran font diperkecil sedikit agar teks panjang tidak tumpuk */
-    font-weight: bold;
+    /*font-weight: bold;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     cursor: pointer;
     transition: transform 0.1s;
     text-align: center;
     /* Tambahan agar teks panjang di tombol 2 bisa turun ke baris baru */
-    white-space: normal; 
+    /*white-space: normal;
     overflow-wrap: break-word;
 }
 
 /* Khusus tombol kedua yang teksnya panjang, kita kasih max-width agar tidak melebar sendirian */
-button:nth-child(2) {
+/*button:nth-child(2) {
     max-width: 250px; 
-}
+}*/
 
 /* Container Tombol di bagian bawah */
-/*.button-container {
+.button-container {
     position: absolute;
     bottom: 10%; /* Jarak dari bawah layar */
-    /*width: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -127,13 +127,13 @@ button {
     padding: 15px;
     border-radius: 12px;
     border: none;
-    background: white;
+    background: #DEEEBF;
     font-size: 14px;
     font-weight: bold;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     cursor: pointer;
     transition: transform 0.1s;
-}*/
+}
 
 button:active {
     transform: scale(0.95);
@@ -152,7 +152,7 @@ button:active {
     border-radius: 15px;
     font-weight: bold;
     z-index: 100;
-    box-shadow: 0 0 20px rgba(0,0,0,1);
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 
 .hidden { display: none !important; }
