@@ -1,0 +1,178 @@
+/* Reset standar */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a1a; /* Warna gelap di luar area game */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.game-container {
+    background-color: #000;
+    position: relative;
+    /* Menjaga rasio 9:16 */
+    height: 100vh; 
+    aspect-ratio: 9 / 16;
+    background-color: #000;
+    overflow: hidden;
+}
+
+/* Animasi Fade In */
+.fade-in-awal {
+    animation: fadeInLama 3s ease-in forwards;
+}
+
+@keyframes fadeInLama {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Memastikan semua aset gambar mengisi frame dengan pas */
+.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Agar gambar tidak terpotong */
+    pointer-events: none; /* Supaya tidak mengganggu klik tombol */
+}
+
+/* Background kunci (overlay abu-abu) */
+.key-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Mengganti key_blackout.png jika perlu */
+    z-index: 5;
+}
+
+/* Gambar Kunci */
+.key-img {
+    position: absolute;
+    width: 80%; /* Ukuran kunci diperkecil sedikit agar proporsional */
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+/* --- PERBAIKAN TOMBOL MENJADI BERSEBELAHAN (LEFT-RIGHT) --- */
+.button-container {
+    position: absolute;
+    bottom: 15%; /* Sedikit lebih turun agar tidak terlalu menutupi pintu */
+    width: 100%;
+    display: flex;
+    flex-direction: row; /* Ubah dari column menjadi row untuk sejajar */
+    justify-content: center; /* Tombol berada di tengah layar secara horizontal */
+    align-items: center;
+    gap: 10px; /* Jarak antar tombol diperkecil agar pas bersebelahan */
+    padding: 0 10px; /* Beri sedikit padding samping */
+    z-index: 20;
+}
+
+button {
+    /* Kita buat tombolnya berbagi tempat (misal masing-masing ~45%) */
+    flex: 0 1 45%; 
+    max-width: none; /* Hilangkan max-width lama agar bisa lebar sejajar */
+    padding: 12px 10px; /* Sesuaikan padding agar teks tetap pas */
+    border-radius: 10px;
+    border: none;
+    background: white;
+    font-size: 13px; /* Ukuran font diperkecil sedikit agar teks panjang tidak tumpuk */
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform 0.1s;
+    text-align: center;
+    /* Tambahan agar teks panjang di tombol 2 bisa turun ke baris baru */
+    white-space: normal; 
+    overflow-wrap: break-word;
+}
+
+/* Khusus tombol kedua yang teksnya panjang, kita kasih max-width agar tidak melebar sendirian */
+button:nth-child(2) {
+    max-width: 250px; 
+}
+
+/* Container Tombol di bagian bawah */
+/*.button-container {
+    position: absolute;
+    bottom: 10%; /* Jarak dari bawah layar */
+    /*width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 0 20px;
+    z-index: 20;
+}
+
+button {
+    width: 100%;
+    max-width: 300px;
+    padding: 15px;
+    border-radius: 12px;
+    border: none;
+    background: white;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform 0.1s;
+}*/
+
+button:active {
+    transform: scale(0.95);
+}
+
+.notif {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    text-align: center;
+    padding: 20px;
+    color: white;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 15px;
+    font-weight: bold;
+    z-index: 100;
+    box-shadow: 0 0 20px rgba(0,0,0,1);
+}
+
+.hidden { display: none !important; }
+
+/* Warna saat Jawaban BENAR */
+.notif.benar {
+    background: rgba(46, 204, 113, 0.85); /* Hijau transparan */
+    color: white;
+    border: 2px solid #27ae60;
+}
+
+/* Warna saat Jawaban SALAH */
+.notif.salah {
+    background: rgba(231, 76, 60, 0.85); /* Merah transparan */
+    color: white;
+    border: 2px solid #c0392b;
+}
+
+/* Tambahan: pastikan warna teks di notif default dihapus agar mengikuti class benar/salah */
+.notif {
+    /* ... properti lain tetap ... */
+    color: white; /* default teks putih */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}

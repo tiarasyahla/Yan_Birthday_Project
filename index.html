@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yan Birthday Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game-container">
+        <img src="assets/black_wall.png" class="layer background-inner fade-in-awal">
+        <img src="assets/out_wall.png" class="layer background-outer fade-in-awal">
+        <img src="assets/door1.png" id="main-door" class="layer door fade-in-awal" style="pointer-events: auto;">
+    
+        <div id="key-selection" class="hidden">
+            <div class="key-bg"></div> <img src="assets/key1.png" id="current-key" class="key-img">
+            
+            <div class="button-container">
+                <button onclick="checkKey()">Aku pilih kunci ini!</button>
+                <button onclick="nextKey()">Hmm.. sepertinya bukan ini, coba kunci selanjutnya!</button>
+            </div>
+        </div>
+    
+        <div id="notification" class="notif hidden"></div>
+    </div>
+
+    <audio id="sfx-salah" src="assets/sfx_salah.mp3"></audio>
+    <audio id="sfx-benar" src="assets/sfx_benar.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
