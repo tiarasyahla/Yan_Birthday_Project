@@ -14,16 +14,27 @@
 <body>
 
     <div class="game-container">
-        <img src="assets/black_wall.png" class="layer background-inner fade-in-awal">
+        <img src="assets/black_wall.png" id="inner-wall" class="layer background-inner fade-in-awal hidden">
         <img src="assets/out_wall.png" class="layer background-outer fade-in-awal">
         <img src="assets/door1.png" id="main-door" class="layer door fade-in-awal" style="pointer-events: auto;">
-    
+        
+        <div id="dialog-box" class="hidden">
+            <div class="dialog-content">
+                <p id="dialog-text"></p>
+                <span class="next-arrow">▼</span>
+            </div>
+        </div>
+
         <div id="key-selection" class="hidden">
-            <div class="key-bg"></div> <img src="assets/key1.png" id="current-key" class="key-img">
+            <img src="assets/key_blackout.png" class="key-bg fade-blackout">
             
-            <div class="button-container">
+            <div class="key-wrapper fade-key">
+                <img src="assets/key1.png" id="current-key" class="key-img">
+            </div>
+            
+            <div class="button-container fade-buttons">
                 <button onclick="checkKey()">Kayaknya yang ini, coba dulu ah (⁠＾⁠3⁠＾⁠♪</button>
-                <button onclick="nextKey()">Hmm.. kayaknya bukan ini, coba kunci selanjutnya (⁠ﾉﾟ⁠0ﾟ⁠)⁠ﾉ⁠→</button>
+                <button onclick="nextKey()">Hmm.. kayaknya bukan ini, coba kunci selanjutnya (⁠づ⁠￣⁠ ⁠³⁠￣⁠)⁠づ</button>
             </div>
         </div>
     
