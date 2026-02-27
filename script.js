@@ -1,57 +1,82 @@
 let currentKeyIndex = 1;
 const totalKeys = 3;
 
-// 1. Munculkan menu kunci setelah beberapa detik (misal 3 detik)
-setTimeout(() => {
-    document.getElementById('key-selection').classList.remove('hidden');
-    document.getElementById('key-selection').style.animation = "fadeInLama 1s forwards";
-}, 5000);
+// --- STEP 1: LOGIKA DIALOG (GANTI SETTIMEOUT LAMA DENGAN INI) ---
+let dialogStep = 0;
+const dialogLines = [
+    "Hahhh... akhirnya sampai juga di rumah.",
+    "Waktunya istirahat, capek banget hari ini...",
+    "Loh? Kok pintunya terkunci? Mana ya kuncinya...?"
+];
 
+// Munculkan dialog setelah out_wall selesai fade-in (detik ke-4)
 setTimeout(() => {
-    document.getElementById('inner-wall').classList.remove('hidden');
-    document.getElementById('inner-wall').style.animation = "fadeInLama 1s forwards";
-}, 5000);
+    mulaiDialog();
+}, 4000); 
 
-// Fungsi ganti gambar kunci
+function mulaiDialog() {
+    const box = document.getElementById('dialog-box');
+    box.classList.remove('hidden');
+    tampilkanTeks();
+    
+    box.onclick = () => {
+        dialogStep++;
+        if (dialogStep < dialogLines.length) {
+            tampilkanTeks();
+        } else {
+            box.classList.add('hidden');
+            munculkanMenuKunci(); // Pindah ke pemilihan kunci
+        }
+    };
+}
+
+function tampilkanTeks() {
+    document.getElementById('dialog-text').innerText = dialogLines[dialogStep];
+}
+
+// --- STEP 2: MUNCULKAN MENU KUNCI ---
+function munculkanMenuKunci() {
+    const keyMenu = document.getElementById('key-selection');
+    const innerWall = document.getElementById('inner-wall');
+    
+    keyMenu.classList.remove('hidden');
+    innerWall.classList.remove('hidden');
+    
+    // Beri animasi fade in halus agar tidak kaget
+    //keyMenu.style.animation = "fadeInLama 1s forwards";
+    //innerWall.style.animation = "fadeInLama 1s forwards";
+}
+
+// --- STEP 3: LOGIKA TOMBOL KUNCI (Tetap Pakai yang Lama) ---
 function nextKey() {
     currentKeyIndex++;
     if (currentKeyIndex > totalKeys) currentKeyIndex = 1;
     document.getElementById('current-key').src = `assets/key${currentKeyIndex}.png`;
 }
 
-// Fungsi cek kunci (Jawaban benar: Kunci 3)
 function checkKey() {
     const notif = document.getElementById('notification');
-    
     notif.classList.remove('hidden', 'benar', 'salah');
-    
+
     if (currentKeyIndex === 3) {
-        // JAWABAN BENAR
         notif.innerText = "Yey! Kunci sesuai, silakan masuk! (⁠≧⁠▽⁠≦⁠)";
         notif.classList.add('benar');
         document.getElementById('sfx-benar').play();
         
-        // Sembunyikan menu kunci & mulai animasi pintu
         setTimeout(() => {
             document.getElementById('key-selection').classList.add('hidden');
             notif.classList.add('hidden');
-            openDoor();
+            openDoor(); // Lanjut ke animasi pintu
         }, 2000);
-        
     } else {
-        // JAWABAN SALAH
-        notif.innerText = "Sayangnya bukan, coba lagi ya (⁠╥⁠﹏⁠╥⁠)";
+        notif.innerText = "Sayangnya bukan, coba lagi yaa (⁠╥⁠﹏⁠╥⁠)";
         notif.classList.add('salah');
         document.getElementById('sfx-salah').play();
-        
-        // Reset animasi notif agar bisa muncul lagi
-        setTimeout(() => {
-            notif.classList.add('hidden');
-        }, 2000);
+        setTimeout(() => { notif.classList.add('hidden'); }, 2000);
     }
 }
 
-// Fungsi Animasi Pintu Terbuka
+// --- STEP 4: ANIMASI PINTU & ZOOM ---
 function openDoor() {
     const door = document.getElementById('main-door');
     const frames = ['door1.png', 'door2.png', 'door3.png', 'door4.png'];
@@ -63,12 +88,13 @@ function openDoor() {
             currentFrame++;
         } else {
             clearInterval(interval);
-            
             door.style.display = 'none'; 
-            
-            console.log("Pintu terbuka penuh! Siap untuk animasi zoom-in.");
-            // Di sini nanti tambahkan kode untuk masuk ke ruangan (zoom in)
+            setTimeout(() => { mulaiZoom(); }, 500);
         }
-    }, 500); // Kecepatan pergantian frame pintu (0.5 detik)
+    }, 500);
 }
 
+function mulaiZoom() {
+    const container = document.querySelector('.game-container');
+    container.classList.add('zoom-masuk');
+}
