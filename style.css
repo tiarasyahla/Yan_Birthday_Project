@@ -40,6 +40,35 @@ body, html {
     }
 }
 
+/* Animasi dasar fade in */
+@keyframes fadeInSmooth {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 1. Blackout (Langsung muncul halus) */
+.fade-blackout {
+    animation: fadeInSmooth 1.5s ease forwards;
+}
+
+/* 2. Kunci (Muncul setelah blackout mulai terlihat) */
+.fade-key {
+    opacity: 0; /* Mulai dari transparan */
+    animation: fadeInSmooth 1s ease forwards;
+    animation-delay: 1s; /* Tunggu 1 detik */
+}
+
+/* 3. Tombol (Muncul paling akhir) */
+.fade-buttons {
+    opacity: 0;
+    animation: fadeInSmooth 1s ease forwards;
+    animation-delay: 2s; /* Tunggu 2 detik */
+}
+
+/* Pastikan class hidden benar-benar menghilangkan elemen */
+.hidden { display: none !important; }
+
+
 /* Memastikan semua aset gambar mengisi frame dengan pas */
 .layer {
     position: absolute;
@@ -51,24 +80,78 @@ body, html {
     pointer-events: none; /* Supaya tidak mengganggu klik tombol */
 }
 
+/* Dialog awal */
+#dialog-box {
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    background: rgba(222, 238, 191, 0.75);
+    border: 2px solid #506B19;
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.dialog-content {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0;
+}
+
+.next-arrow {
+    color: #506B19;
+    float: right;
+    font-size: 12px;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+}
+
 /* Background kunci (overlay abu-abu) */
 .key-bg {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); /* Mengganti key_blackout.png jika perlu */
-    z-index: 5;
+    z-index: 50;
+    object-fit: cover;
 }
 
-/* Gambar Kunci */
-.key-img {
+.key-wrapper {
     position: absolute;
-    width: 80%; /* Ukuran kunci diperkecil sedikit agar proporsional */
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
+    top: 0;
+    right: 0;
+    width: 250px; /* Ukuran area kunci, sesuaikan dengan asetmu */
+    height: 250px;
+    z-index: 100; /* Jauh lebih tinggi dari key-bg */
+    pointer-events: none; /* Biar gak ngeblok klik di bawahnya */
 }
+
+.key-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(4px 4px 10px rgba(0,0,0,0.6));
+    /* Hapus width/height 100% absolute yang bikin dia menuhin layar */
+}
+
+
+/* Gambar Kunci */
+/*.key-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.5));
+}*/
 
 /* --- PERBAIKAN TOMBOL MENJADI BERSEBELAHAN (LEFT-RIGHT) --- */
 /*.button-container {
@@ -111,24 +194,24 @@ button {
 /* Container Tombol di bagian bawah */
 .button-container {
     position: absolute;
-    bottom: 10%; /* Jarak dari bawah layar */
+    bottom: 15%; /* Jarak dari bawah layar */
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
     padding: 0 20px;
-    z-index: 20;
+    z-index: 200;
 }
 
 button {
     width: 100%;
     max-width: 300px;
     padding: 15px;
+    border: 2px solid #506B19;
     border-radius: 12px;
-    border: none;
-    background: #DEEEBF;
-    font-size: 14px;
+    background: rgba(222, 238, 191, 0.75);
+    font-size: 16px;
     font-weight: bold;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     cursor: pointer;
@@ -151,8 +234,9 @@ button:active {
     background: rgba(0, 0, 0, 0.75);
     border-radius: 15px;
     font-weight: bold;
+    font-size: 16px;
     z-index: 100;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    box-shadow: 0 0 20px rgba(0,0,0,);
 }
 
 .hidden { display: none !important; }
@@ -179,7 +263,7 @@ button:active {
 }
 
 /* Atau kalau mau khusus untuk tombol dan notifikasi saja agar lebih menonjol */
-button, .notif {
+button, .notif, .dialog-content {
     font-family: 'Quicksand', sans-serif;
     letter-spacing: 0.5px; /* Biar lebih lega dan enak dibaca */
 }
