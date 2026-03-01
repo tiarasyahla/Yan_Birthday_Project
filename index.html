@@ -39,7 +39,31 @@
         </div>
     
         <div id="notification" class="notif hidden"></div>
+        
+        <div id="total-blackout" class="hidden"></div>
+      
     </div>
+
+    <div id="cake-scene" class="cake-container hidden">
+        <img src="assets/cake/cake_blackout.png" class="layer-cake blackout-overlay">
+        <img src="assets/cake/cake1.png" id="main-cake" class="layer-cake">
+        
+        <div id="liv-bubble" class="chat-bubble liv-pos hidden">
+            <p id="liv-text"></p>
+        </div>
+    
+        <div id="action-bubble" class="chat-bubble action-pos hidden" onclick="prosesTiupLilin()">
+            <p>tiup lilin</p>
+        </div>
+    
+        <div id="user-dialog-landscape" class="user-dialog-ls hidden">
+            <div class="dialog-content">
+                <p id="user-text-ls"></p>
+                <span class="next-arrow">▼</span>
+            </div>
+        </div>
+    </div>
+
 
     <audio id="sfx-salah" src="assets/sfx_salah.mp3"></audio>
     <audio id="sfx-benar" src="assets/sfx_benar.mp3"></audio>
