@@ -310,7 +310,7 @@ button, .notif, .dialog-content {
     position: absolute;
     /*left: 0;*/
     right: 35%;
-    bottom: 25%;
+    top: 50%;
     transform: translateY(-50%) rotate(90deg);
     width: 360px;
     color: #F0FFD4;
