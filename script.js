@@ -94,18 +94,6 @@ function openDoor() {
     }, 500);
 }
 
-// --- UPDATE STEP 4: ZOOM & TRANSISI ---
-
-//function mulaiZoom() {
-    //const container = document.querySelector('.game-container');
-    //const blackout = document.getElementById('total-blackout');
-    
-    // 1. Efek Kamera Maju & Layar menggelap
-    //container.classList.add('zoom-masuk');
-    //blackout.classList.remove('hidden');
-    //blackout.style.animation = "fadeInSmooth 2s forwards";
-//}
-
 function mulaiZoom() {
     const container = document.querySelector('.game-container');
     const blackout = document.getElementById('total-blackout');
@@ -200,52 +188,6 @@ function jalankanAnimasiKueOtomatis(callback) {
     }, 800); // Kecepatan gerak karakter
 }
 
-// 11. Fungsi Klik Tiup Lilin
-function prosesTiupLilin() {
-    const cakeImg = document.getElementById('main-cake');
-    document.getElementById('action-bubble').classList.add('hidden');
-
-    // Muncul candle2.png
-    cakeImg.src = "assets/cake/candle2.png";
-
-    // 12. Dialog Liv (Yeyy...)
-    setTimeout(() => {
-        tampilkanBubbleLiv("yeyyyy happy birthday yan!", () => {
-            
-            // 13. Tampilan candle3.png
-            cakeImg.src = "assets/cake/candle3.png";
-            
-            // 14. Animasi Back1 sampai Back4
-            setTimeout(() => {
-                jalankanAnimasiMundur();
-            }, 1500);
-        });
-    }, 1000);
-}
-
-function jalankanAnimasiMundur() {
-    const cakeImg = document.getElementById('main-cake');
-    const frames = ['back1.png', 'back2.png', 'back3.png', 'back4.png', 'back5.png'];
-    let i = 0;
-
-    const interval = setInterval(() => {
-        if (i < frames.length) {
-            cakeImg.src = `assets/cake/${frames[i]}`;
-            
-            // 15. Tahan 5 detik di back5
-            if (frames[i] === 'back5.png') {
-                clearInterval(interval);
-                console.log("Menahan di back5 selama 5 detik...");
-                setTimeout(() => {
-                    console.log("Persiapan Haru & Ace...");
-                    // Panggil fungsi Haru & Ace di sini nanti
-                }, 5000);
-            }
-            i++;
-        }
-    }, 1000);
-}
-
 // Fungsi untuk memunculkan dialog User di bagian bawah
 function tampilkanUserDialogLS(teks, callback) {
     const box = document.getElementById('user-dialog-landscape');
@@ -260,7 +202,7 @@ function tampilkanUserDialogLS(teks, callback) {
     };
 }
 
-// Fungsi untuk memunculkan bubble chat Liv
+// 1. Fungsi Bubble Liv yang hilang otomatis dalam 2 detik
 function tampilkanBubbleLiv(teks, callback) {
     const bubble = document.getElementById('liv-bubble');
     const txt = document.getElementById('liv-text');
@@ -268,9 +210,63 @@ function tampilkanBubbleLiv(teks, callback) {
     txt.innerText = teks;
     bubble.classList.remove('hidden');
     
-    bubble.onclick = () => {
+    // Hilang otomatis setelah 2 detik
+    setTimeout(() => {
         bubble.classList.add('hidden');
-        if (callback) callback();
-    };
-                                    }
-                    
+        if (callback) callback(); // Lanjut ke langkah berikutnya
+    }, 2000); 
+}
+
+// 2. Fungsi Tiup Lilin (Sekali klik langsung sat-set-sat-set)
+function prosesTiupLilin() {
+    const cakeImg = document.getElementById('main-cake');
+    const btnTiup = document.getElementById('action-bubble');
+    
+    // Sembunyikan tombol segera setelah diklik
+    btnTiup.classList.add('hidden');
+
+    // TAMPILAN: candle2.png (Apinya goyang)
+    cakeImg.src = "assets/cake/candle2.png";
+
+    // Jeda sebentar (500ms) biar efek tiupnya kerasa, lalu Liv teriak Happy Birthday
+    setTimeout(() => {
+        tampilkanBubbleLiv("yeyyyy happy birthday yan!", () => {
+            
+            // TAMPILAN: candle3.png (Lilin mati)
+            cakeImg.src = "assets/cake/candle3.png";
+            
+            // Jeda 1 detik setelah lilin mati, langsung mulai animasi mundur
+            setTimeout(() => {
+                jalankanAnimasiMundur();
+            }, 1000);
+        });
+    }, 500);
+}
+
+// 3. Update Animasi Mundur agar lebih smooth transisinya
+function jalankanAnimasiMundur() {
+    const cakeImg = document.getElementById('main-cake');
+    const frames = ['back1.png', 'back2.png', 'back3.png', 'back4.png', 'back5.png'];
+    let i = 0;
+
+    const interval = setInterval(() => {
+        if (i < frames.length) {
+            cakeImg.src = `assets/cake/${frames[i]}`;
+            
+            // Jika sudah sampai back5, berhenti dan tunggu 5 detik
+            if (frames[i] === 'back5.png') {
+                clearInterval(interval);
+                console.log("Scene Liv selesai. Menunggu 5 detik untuk Haru & Ace...");
+                
+                setTimeout(() => {
+                    // Dialog terimakasih 
+                    tampilkanUserDialogLS("Makasih banyak Liv, aku kaget loh, gak sangka kamu bakal ngerayaain gin--", () => {
+                    });
+                    // Di sini panggil fungsi kemunculan Haru & Ace
+                    console.log("ACTION: Haru & Ace Muncul!");
+                }, 5000);
+            }
+            i++;
+        }
+    }, 800); // Sedikit lebih cepat agar tidak membosankan
+}
