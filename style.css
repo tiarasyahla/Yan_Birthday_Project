@@ -1,4 +1,3 @@
-/* Reset standar */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -9,7 +8,7 @@ body, html {
     font-family: 'Quicksand', sans-serif;
     width: 100%;
     height: 100%;
-    background-color: #1a1a1a; /* Warna gelap di luar area game */
+    background-color: #1a1a1a;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,12 +16,12 @@ body, html {
 }
 
 .game-container {
-    background-color: #000;
+    background-color: #2F3045;
     position: relative;
     /* Menjaga rasio 9:16 */
     height: 100vh; 
     aspect-ratio: 9 / 16;
-    background-color: #000;
+    /*background-color: #000;*/
     overflow: hidden;
 }
 
@@ -40,7 +39,6 @@ body, html {
     }
 }
 
-/* Animasi dasar fade in */
 @keyframes fadeInSmooth {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -55,19 +53,17 @@ body, html {
 .fade-key {
     opacity: 0; /* Mulai dari transparan */
     animation: fadeInSmooth 1s ease forwards;
-    animation-delay: 1s; /* Tunggu 1 detik */
+    animation-delay: 1s;
 }
 
 /* 3. Tombol (Muncul paling akhir) */
 .fade-buttons {
     opacity: 0;
     animation: fadeInSmooth 1s ease forwards;
-    animation-delay: 2s; /* Tunggu 2 detik */
+    animation-delay: 2s;
 }
 
-/* Pastikan class hidden benar-benar menghilangkan elemen */
 .hidden { display: none !important; }
-
 
 /* Memastikan semua aset gambar mengisi frame dengan pas */
 .layer {
@@ -120,7 +116,7 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Mengganti key_blackout.png jika perlu */
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 50;
     object-fit: cover;
 }
@@ -130,7 +126,7 @@ body, html {
     top: 0;
     right: 0;
     width: 335px;
-    z-index: 100; /* Jauh lebih tinggi dari key-bg */
+    z-index: 100; 
     pointer-events: none; /* Biar gak ngeblok klik di bawahnya */
 }
 
@@ -139,61 +135,12 @@ body, html {
     height: auto;
     object-fit: contain;
     filter: drop-shadow(4px 4px 10px rgba(0,0,0,0.6));
-    /* Hapus width/height 100% absolute yang bikin dia menuhin layar */
 }
-
-
-/* Gambar Kunci */
-/*.key-img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 100;
-    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.5));
-}*/
-
-/* --- PERBAIKAN TOMBOL MENJADI BERSEBELAHAN (LEFT-RIGHT) --- */
-/*.button-container {
-    position: absolute;
-    bottom: 15%; /* Sedikit lebih turun agar tidak terlalu menutupi pintu */
-    /*width: 100%;
-    display: flex;
-    flex-direction: row;/*Ubah dari column menjadi row untuk sejajar*/
-    /*justify-content: center; /* Tombol berada di tengah layar secara horizontal */
-    /*align-items: center;
-    /*gap: 10px; /* Jarak antar tombol diperkecil agar pas bersebelahan */
-    /*padding: 0 10px; /* Beri sedikit padding samping */
-    /*z-index: 20;
-}
-
-button {
-    /* Kita buat tombolnya berbagi tempat (misal masing-masing ~45%) */
-    /*flex: 0 1 45%;
-    max-width: none; /* Hilangkan max-width lama agar bisa lebar sejajar */
-    /*padding: 12px 10px; /* Sesuaikan padding agar teks tetap pas */
-    /*border-radius: 10px;
-    border: none;
-    background: white;
-    font-size: 13px; /* Ukuran font diperkecil sedikit agar teks panjang tidak tumpuk */
-    /*font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    cursor: pointer;
-    transition: transform 0.1s;
-    text-align: center;
-    /* Tambahan agar teks panjang di tombol 2 bisa turun ke baris baru */
-    /*white-space: normal;
-    overflow-wrap: break-word;
-}
-
-/* Khusus tombol kedua yang teksnya panjang, kita kasih max-width agar tidak melebar sendirian */
-/*button:nth-child(2) {
-    max-width: 250px; 
-}*/
 
 /* Container Tombol di bagian bawah */
 .button-container {
     position: absolute;
-    bottom: 15%; /* Jarak dari bawah layar */
+    bottom: 15%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -226,10 +173,12 @@ button:active {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
+    width: 100%;
+    max-width: 300px;
     text-align: center;
     padding: 20px;
     color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
     background: rgba(0, 0, 0, 0.75);
     border-radius: 15px;
     font-weight: bold;
@@ -242,27 +191,122 @@ button:active {
 
 /* Warna saat Jawaban BENAR */
 .notif.benar {
-    background: rgba(46, 204, 113, 0.85); /* Hijau transparan */
+    background: rgba(46, 204, 113, 0.85);
     color: white;
     border: 2px solid #27ae60;
 }
 
 /* Warna saat Jawaban SALAH */
 .notif.salah {
-    background: rgba(231, 76, 60, 0.85); /* Merah transparan */
+    background: rgba(231, 76, 60, 0.85); 
     color: white;
     border: 2px solid #c0392b;
 }
 
-/* Tambahan: pastikan warna teks di notif default dihapus agar mengikuti class benar/salah */
-.notif {
-    /* ... properti lain tetap ... */
-    color: white; /* default teks putih */
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-}
-
-/* Atau kalau mau khusus untuk tombol dan notifikasi saja agar lebih menonjol */
+/* Font */
 button, .notif, .dialog-content {
     font-family: 'Quicksand', sans-serif;
     letter-spacing: 0.5px; /* Biar lebih lega dan enak dibaca */
 }
+
+/* --- ANIMASI ZOOM & TRANSISI --- */
+.zoom-masuk {
+    animation: zoomKamera 3s ease-in-out forwards;
+}
+
+@keyframes zoomKamera {
+    0% { transform: scale(1); }
+    100% { transform: scale(5); }
+}
+
+#total-blackout {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: #2F3045;
+    z-index: 500;
+    opacity: 0;
+}
+
+.cake-container {
+    position: fixed; /* Menempel di layar browser/HP */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #2F3045; /* Warna dasar scene kue */
+    z-index: 9999; /* Pastikan di atas segalanya */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.layer-cake {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Agar karakter tidak terpotong dan proporsional */
+}
+
+.blackout-overlay {
+    z-index: 1; /* Di belakang karakter */
+}
+
+#main-cake {
+    z-index: 2; /* Di depan blackout */
+}
+
+/* Kotak tulisan 'tiup lilin' di sebelah kanan */
+.action-pos {
+    left: 15%;
+    top: 20%;
+    background: #ffffff; /* Putih bersih agar kontras */
+    color: #333;
+    padding: 10px 25px;
+    border-radius: 5px; /* Kotak sedikit tumpul */
+    border: 2px solid #506B19;
+    cursor: pointer;
+    font-size: 18px;
+    transform: translateY(-50%) rotate(90deg); /* Menyesuaikan rotasi landscape */
+    box-shadow: 4px 4px 0px #506B19; /* Efek shadow retro */
+}
+
+.action-pos:active {
+    transform: translateY(-50%) rotate(90deg) scale(0.95);
+}
+
+/* Container Chat Bubble Umum */
+.chat-bubble {
+    position: absolute;
+    z-index: 10000;
+    padding: 15px;
+    border-radius: 15px;
+    font-weight: bold;
+    transform: rotate(90deg); /* Miring mengikuti gambar */
+    cursor: pointer;
+}
+
+/* Bubble Liv di Kiri */
+.liv-pos {
+    right: 10%;
+    top: 20%;
+    background: white;
+    border: 3px solid #FFD700;
+    max-width: 200px;
+}
+
+/* Dialog User di Bawah (Saat Landscape) */
+.user-dialog-ls {
+    position: absolute;
+    right: 5%; /* Karena rotasi, 'bottom' jadi 'right' */
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    width: 320px;
+    background: rgba(222, 238, 191, 0.95);
+    border: 2px solid #506B19;
+    padding: 15px;
+    border-radius: 10px;
+    z-index: 10001;
+    cursor: pointer;
+    }
