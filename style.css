@@ -258,18 +258,26 @@ button, .notif, .dialog-content {
 }
 
 /* Kotak tulisan 'tiup lilin' di sebelah kanan */
+
+@keyframes pulse {
+    0% { transform: translateY(-50%) rotate(90deg) scale(1); }
+    50% { transform: translateY(-50%) rotate(90deg) scale(1.05); }
+    100% { transform: translateY(-50%) rotate(90deg) scale(1); }
+}
+
 .action-pos {
-    left: 15%;
-    top: 20%;
-    background: #ffffff; /* Putih bersih agar kontras */
-    color: #333;
+    left: 10%;
+    top: 42%;
+    background: rgba(118, 132, 91, 0.95);
+    color: #F0FFD4;
     padding: 10px 25px;
     border-radius: 5px; /* Kotak sedikit tumpul */
-    border: 2px solid #506B19;
+    border: 2px solid #435126;
     cursor: pointer;
     font-size: 18px;
     transform: translateY(-50%) rotate(90deg); /* Menyesuaikan rotasi landscape */
     box-shadow: 4px 4px 0px #506B19; /* Efek shadow retro */
+    animation: pulse 1.5s infinite ease-in-out;
 }
 
 .action-pos:active {
@@ -291,22 +299,27 @@ button, .notif, .dialog-content {
 .liv-pos {
     right: 10%;
     top: 20%;
-    background: white;
-    border: 3px solid #FFD700;
+    background: rgba(184, 71, 71, 0.9);
+    border: 3px solid #740404;
     max-width: 200px;
+    color: #FFCFCF;
 }
 
 /* Dialog User di Bawah (Saat Landscape) */
 .user-dialog-ls {
     position: absolute;
-    right: 5%; /* Karena rotasi, 'bottom' jadi 'right' */
-    top: 50%;
+    /*left: 0;*/
+    right: 35%;
+    bottom: 25%;
     transform: translateY(-50%) rotate(90deg);
-    width: 320px;
-    background: rgba(222, 238, 191, 0.95);
-    border: 2px solid #506B19;
+    width: 360px;
+    color: #F0FFD4;
+    background: rgba(118, 132, 91, 0.95);
+    border: 2px solid #435126;
     padding: 15px;
     border-radius: 10px;
     z-index: 10001;
     cursor: pointer;
-    }
+}
+
+    
