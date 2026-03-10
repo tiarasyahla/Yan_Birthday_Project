@@ -76,6 +76,34 @@ body, html {
     pointer-events: none; /* Supaya tidak mengganggu klik tombol */
 }
 
+/*#dialog-box {
+    position: absolute;
+    /* 1. Kunci di paling bawah layar */
+    /*bottom: 0;
+    left: 0;
+    /* 2. Lebar penuh agar gradasi menutup sempurna dari kiri ke kanan */
+    /*width: 100%; 
+    
+    /* 3. GRADASI: Hitam pekat di bawah, memudar ke transparan di atas */
+    /*background: linear-gradient(to top, 
+        rgba(0, 0, 0, 0.9) 0%, 
+        rgba(0, 0, 0, 0.7) 60%, 
+        rgba(0, 0, 0, 0) 100%
+    );
+    
+    /* 4. HILANGKAN border dan radius lama */
+    /*border: none;
+    border-radius: 0;
+    
+    /* 5. Padding: Beri ruang di bawah agar teks tidak mepet layar */
+    /*padding: 80px 20px 120px 20px; 
+    
+    z-index: 1000;
+    cursor: pointer;
+    transform: none; /* Hapus translateX(-50%) karena width sudah 100% */
+/*}*/
+
+
 /* Dialog awal */
 #dialog-box {
     position: absolute;
@@ -97,8 +125,16 @@ body, html {
     margin: 0;
 }
 
+/*.dialog-content {
+    font-weight: bold;
+    font-size: 18px;
+    color: #F0FFD4;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* Shadow agar teks "tegas" */
+/*}*/
+
 .next-arrow {
     color: #506B19;
+    /*color: #F0FFD4;*/
     float: right;
     font-size: 12px;
     animation: bounce 1s infinite;
@@ -296,20 +332,39 @@ button, .notif, .dialog-content {
 }
 
 /* Bubble Liv di Kiri */
-.liv-pos {
+/*.liv-pos {
     right: 10%;
     top: 20%;
-    background: rgba(184, 71, 71, 0.9);
-    border: 3px solid #740404;
-    max-width: 200px;
+    background: rgba(184, 71, 71, 0);
+    /*border: 3px solid #740404;*/
+    /*max-width: 200px;
     color: #FFCFCF;
+}*/
+
+.liv-pos {
+    /* Posisikan di area atas/tengah karakter Liv */
+    right: 10%; 
+    top: 20%;
+    
+    /* Buat transparan total sesuai keinginanmu */
+    background: transparent;
+    border: none;
+    
+    max-width: 250px;
+    color: #FFCFCF;
+    
+    /* WAJIB: Kasih shadow hitam agar teks pink-mu terbaca jelas */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
+    font-size: 20px;
+    text-align: center;
 }
 
+
 /* Dialog User di Bawah (Saat Landscape) */
-.user-dialog-ls {
+/*.user-dialog-ls {
     position: absolute;
     /*left: 0;*/
-    right: 35%;
+    /*right: 35%;
     top: 50%;
     transform: translateY(-50%) rotate(90deg);
     width: 360px;
@@ -320,6 +375,39 @@ button, .notif, .dialog-content {
     border-radius: 10px;
     z-index: 10001;
     cursor: pointer;
-}
+}*/
 
+.user-dialog-ls {
+    position: absolute;
+    /* 1. Kunci di sisi kiri layar (yang jadi BAWAH saat landscape) */
+    /* Ubah angka 5% ini untuk mengatur tinggi-rendahnya teks dari bawah */
+    left: -330;
+    
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    transform-origin: center center;
+    
+    width: 100vh; /* Lebar kotak dialog */
+    padding: 60px 20px; /* Padding besar untuk area gradasi */
+    
+    /* 2. GRADASI HITAM SINEMATIK */
+    /* Kita gunakan 'to left' karena kotak diputar, jadi 'bawah' visual adalah 'left' */
+    background: linear-gradient(to top, 
+        rgba(0, 0, 0, 0.9) 0%, 
+        rgba(0, 0, 0, 0.6) 40%, 
+        rgba(0, 0, 0, 0) 90%
+    );
+
+    /* 3. HILANGKAN border dan background lama */
+    border: none;
+    border-radius: 0;
+    
+    color: #F0FFD4;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    font-weight: bold;
+    font-size: 18px;
+    z-index: 10001;
+    cursor: pointer;
+    text-align: center;
+    }
     
