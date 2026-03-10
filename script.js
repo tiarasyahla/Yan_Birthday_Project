@@ -155,7 +155,7 @@ function slideCake() {
                                     
                                     // 10. Bubble Liv (Hehe...)
                                     setTimeout(() => {
-                                        tampilkanBubbleLiv("hehe, ayo tiup lilinnya!", () => {
+                                        tampilkanBubbleLiv("(˶  >   ₃ <˶)༄｡°", () => {
                                             
                                             // 11. Kotak "Tiup Lilin" muncul
                                             document.getElementById('action-bubble').classList.remove('hidden');
@@ -230,7 +230,7 @@ function prosesTiupLilin() {
 
     // Jeda sebentar (500ms) biar efek tiupnya kerasa, lalu Liv teriak Happy Birthday
     setTimeout(() => {
-        tampilkanBubbleLiv("yeyyyy happy birthday yan!", () => {
+        tampilkanBubbleLiv("ꉂ(˵˃ ᗜ ˂˵)", () => {
             
             // TAMPILAN: candle3.png (Lilin mati)
             cakeImg.src = "assets/cake/candle3.png";
@@ -269,4 +269,5 @@ function jalankanAnimasiMundur() {
             i++;
         }
     }, 800); // Sedikit lebih cepat agar tidak membosankan
-}
+                                          }
+
